@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+def retrofitVersion = '2.3.0'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

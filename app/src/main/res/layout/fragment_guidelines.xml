@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="GuidelinesBinding">
+
+        <variable
+            name="guidelineViewModel"
+            type="com.luiz.reminder.ui.fragments.reminde.RemindeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:theme="@style/ToolbarFragmentTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/ToolbarFragmentToolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="@dimen/margin_zero"
+            android:layout_height="@dimen/margin_zero"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_thirty_two">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRegisterGuideline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:onClick="@{() -> guidelineViewModel.redirectToIncludeReminder()}"
+                    android:background="@drawable/bcg_btn_primary"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/title_include_reminde"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_eighteen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRemindes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/title_remindes"
+                    android:textSize="@dimen/text_eighteen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnRegisterGuideline" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRemindes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRemindes" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

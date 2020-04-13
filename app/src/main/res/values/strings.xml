@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Reminder</string>
+    <string name="title_reminde">Lembretes</string>
+    <string name="title_profile">Perfil</string>
+
+    //Splash Screen strings
+    <string name="title_reminder">Reminder</string>
+
+    //Login strings
+    <string name="title_email">E-mail</string>
+    <string name="title_password">Senha</string>
+    <string name="title_login">Login</string>
+    <string name="title_forgot_password">Esqueceu a senha?</string>
+    <string name="title_sign_up_login">Não possui conta? <![CDATA[<b><font color=#FFFFFF>CADASTRE-SE!</font></b>]]></string>
+
+    //Register strings
+    <string name="title_sign_up">Cadastre-se</string>
+    <string name="title_name">Nome</string>
+    <string name="title_register">Cadastrar</string>
+
+    //Frogot password strings
+    <string name="title_recovery_password">Recuperar senha</string>
+    <string name="title_send_recovery_password">Enviaremos sua senha para \no seu e-mail ex****@email.com</string>
+    <string name="title_send">Enviar</string>
+    <string name="title_code_received_email">Código recebido no e-mail</string>
+    <string name="title_new_password">Nova senha</string>
+
+    //Alerts strings
+    <string name="alert_ok_action">OK</string>
+    <string name="alert_error_title">OPS!!!</string>
+    <string name="alert_success_title">Sucesso!</string>
+    <string name="alert_confirm_logout">Tem certeza de que deseja sair?</string>
+    <string name="action_no">Não</string>
+    <string name="action_yes">Sim</string>
+
+    //Actions strings
+    <string name="titlle_exit">Sair</string>
+    <string name="title_include_reminde">Incluir lembrete</string>
+    <string name="title_remindes">Lembretes</string>
+    <string name="titlle_update_user">Alterar cadastro</string>
+    <string name="title_reset_password">Resetar senha</string>
+    <string name="title_have_code">Já possui o código? Clique aqui para redefinir sua senha!</string>
+
+    //Reminde strings
+    <string name="title_title">Título</string>
+    <string name="title_short_description">Breve descrição</string>
+    <string name="title_date">Data</string>
+    <string name="details">Detalhes</string>
+    <string name="title_author">Autor</string>
+
+    //Empty string
+    <string name="title_reminde_empty">No momento não existem lembrentes!</string>
+    <string name="title_receive_notification">Deseja receber notificação?</string>
+</resources>

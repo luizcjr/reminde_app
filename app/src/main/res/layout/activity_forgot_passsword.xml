@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="ForgotPasswordBinding">
+
+        <variable
+            name="forgotViewModel"
+            type="com.luiz.reminder.ui.activities.forgot_passsword.ForgotPasswordViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".ui.activities.forgot_password.ForgotPasswordActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_thirty_two">
+
+                <TextView
+                    android:id="@+id/txtReminder"
+                    style="@style/TextTitleLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:text="@string/title_reminder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/llSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_twenty_four"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_twenty_four"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtReminder">
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextEditTextEighteen"
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/title_recovery_password" />
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLabelForgotPassword"
+                    style="@style/TextEditTextEighteenBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/title_send_recovery_password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llSignUp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmail"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{forgotViewModel.email.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelForgotPassword">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etEmail"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_email"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={forgotViewModel.email.value}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRegister"
+                    style="@style/ButtonGradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:enabled="@{forgotViewModel.form.valid}"
+                    android:onClick="@{() -> forgotViewModel.sendToken()}"
+                    android:text="@string/title_send"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilEmail" />
+
+                <TextView
+                    style="@style/TextEditTextEighteen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_sixteen"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{() -> forgotViewModel.dialogResetToken()}"
+                    android:text="@string/title_have_code"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

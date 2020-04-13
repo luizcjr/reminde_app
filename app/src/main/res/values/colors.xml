@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#27334e</color>
+    <color name="colorPrimaryDark">#000c26</color>
+    <color name="colorAccent">#525c7a</color>
+
+    <color name="colorGreyExit">#B8B2B2</color>
+    <color name="colorGreyLogin">#C2C6CE</color>
+    <color name="colorBlueLogo">#018cfe</color>
+    <color name="colorBlueLogoLight">#69bbff</color>
+    <color name="colorBlueLogoDark">#0060ca</color>
+    <color name="colorGreyAdapter">#bfbfbf</color>
+
+    <color name="menu_inactivated">#B8B2B2</color>
+    <color name="colorRedDark">#7f0000</color>
+</resources>

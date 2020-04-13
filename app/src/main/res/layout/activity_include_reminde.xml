@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="IncludeRemindeBinding">
+
+        <variable
+            name="includeRemindeViewModel"
+            type="com.luiz.reminder.ui.activities.include_reminde.IncludeRemindeViewModel" />
+
+        <variable
+            name="includeRemindeActivity"
+            type="com.luiz.reminder.ui.activities.include_reminde.IncludeRemindeActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.include_reminde.IncludeRemindeActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_thirty_two">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/llSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_twenty_four"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_twenty_four"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/title_include_reminde"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilTitle"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{includeRemindeViewModel.title.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llSignUp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="@string/title_title"
+                        android:inputType="text"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={includeRemindeViewModel.title.value}"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textColorHint="@color/colorGreyLogin" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDetail"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{includeRemindeViewModel.description.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilTitle">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="@string/details"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/margin_sixteen"
+                        android:paddingBottom="@dimen/margin_twenty_four"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textColorHint="@color/colorGreyLogin" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDate"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{includeRemindeViewModel.date.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDetail">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="@string/title_date"
+                        android:inputType="number"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={includeRemindeViewModel.date.value}"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textColorHint="@color/colorGreyLogin" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cbIsNotified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:checked="@={includeRemindeViewModel.isNotified()}"
+                    android:text="@string/title_receive_notification"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDate" />
+
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:background="@drawable/bcg_btn_primary"
+                    android:enabled="@{includeRemindeViewModel.form.valid}"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:onClick="@{() -> includeRemindeActivity.registerReminde()}"
+                    android:text="@string/title_include_reminde"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_twenty"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cbIsNotified" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

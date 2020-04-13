@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="RegisterBinding">
+
+        <variable
+            name="registerViewModel"
+            type="com.luiz.reminder.ui.activities.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".ui.activities.register.RegisterActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_thirty_two">
+
+                <TextView
+                    android:id="@+id/txtReminder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:text="@string/title_reminder"
+                    android:theme="@style/TextTitleLarge"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/llSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_twenty_four"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_twenty_four"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtReminder">
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/title_sign_up"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorGreyLogin" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilName"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{registerViewModel.name.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llSignUp">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etName"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_name"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={registerViewModel.name.value}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmail"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{registerViewModel.email.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilName">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etEmail"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_email"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={registerViewModel.email.value}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPassword"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{registerViewModel.password.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etPassword"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_password"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/margin_sixteen"
+                        android:paddingBottom="@dimen/margin_twenty_four"
+                        android:text="@={registerViewModel.password.value}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRegister"
+                    style="@style/ButtonGradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:onClick="@{() -> registerViewModel.sendRegisterUser()}"
+                    android:text="@string/title_register"
+                    android:enabled="@{registerViewModel.form.valid}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

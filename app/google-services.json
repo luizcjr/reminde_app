@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "792565867937",
+    "firebase_url": "https://reminder-b798f.firebaseio.com",
+    "project_id": "reminder-b798f",
+    "storage_bucket": "reminder-b798f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792565867937:android:122bde5cd1859e62af17e0",
+        "android_client_info": {
+          "package_name": "com.luiz.reminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "792565867937-q47762nefd524tp9hvt8rcisfcus4s51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp0rtnXRmlzCgfaGOn__sejWshot_Qbig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "792565867937-q47762nefd524tp9hvt8rcisfcus4s51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

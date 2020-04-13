@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="ProfileBinding">
+
+        <variable
+            name="profilleViewModel"
+            type="com.luiz.reminder.ui.fragments.profile.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="vertical"
+            android:theme="@style/ToolbarFragmentTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/ToolbarFragmentToolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="@dimen/margin_zero"
+            android:layout_height="@dimen/margin_zero"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llSignUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_twenty_four"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_twenty_four"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/title_profile"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="@dimen/margin_zero"
+                        android:layout_height="@dimen/margin_one"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilName"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{profilleViewModel.name.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llSignUp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietName"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_name"
+                        android:inputType="text"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={profilleViewModel.name.value}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmail"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{profilleViewModel.email.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietEmail"
+                        style="@style/TextEditTextDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:hint="@string/title_email"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={profilleViewModel.email.value}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    android:background="@drawable/bcg_btn_primary"
+                    android:enabled="@{profilleViewModel.form.valid}"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:onClick="@{() -> profilleViewModel.updateUser()}"
+                    android:text="@string/titlle_update_user"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_eighteen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilEmail" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="note"
+            type="com.luiz.reminder.api.models.Notes" />
+
+        <variable
+            name="listener"
+            type="com.luiz.reminder.ui.interfaces.NoteClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_sixteen"
+        android:background="@drawable/bcg_rounded_white"
+        android:padding="@dimen/margin_sixteen">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLabelTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/title_title"
+            android:textColor="@color/colorGreyLogin"
+            android:textSize="@dimen/text_eighteen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_eight"
+            android:fontFamily="@font/montserrat"
+            android:text="@{note.title}"
+            android:textColor="@color/colorGreyLogin"
+            android:textSize="@dimen/text_sixteen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLabelTitle" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCollapse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_sixteen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/details"
+                android:textColor="@color/colorGreyLogin"
+                android:textSize="@dimen/text_eighteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:fontFamily="@font/montserrat"
+                android:text="@{note.description}"
+                android:textColor="@color/colorGreyLogin"
+                android:textSize="@dimen/text_sixteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLabelDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_sixteen"
+                android:layout_marginEnd="@dimen/margin_eight"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/title_date"
+                android:textColor="@color/colorGreyLogin"
+                android:textSize="@dimen/text_eighteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:layout_marginEnd="@dimen/margin_eight"
+                android:fontFamily="@font/montserrat"
+                android:text="@{note.date}"
+                android:textColor="@color/colorGreyLogin"
+                android:textSize="@dimen/text_sixteen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelDate" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

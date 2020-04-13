@@ -1,0 +1,108 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ToolbarFragmentTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
+
+    <style name="ToolbarFragmentToolbar" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ButtonAlert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/bcg_btn_primary</item>
+    </style>
+
+    <style name="ButtonOutline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:minWidth">170dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:elevation" tools:ignore="NewApi">2dp</item>
+        <item name="android:background">@drawable/bcg_register_border_grey</item>
+    </style>
+
+    <style name="ButtonDefault">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:minWidth">170dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/bcg_btn_primary</item>
+    </style>
+
+    <style name="ButtonGradient">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bcg_blue_gradient</item>
+        <item name="android:textSize">@dimen/text_twenty</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="TextTitleLarge">
+        <item name="android:textSize">@dimen/text_forty</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="TextEditTextDefault">
+        <item name="android:textColor">@color/colorGreyLogin</item>
+        <item name="android:textColorHint">@color/colorGreyLogin</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="TextEditTextEighteen">
+        <item name="android:textColor">@color/colorGreyLogin</item>
+        <item name="android:textColorHint">@color/colorGreyLogin</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">@dimen/text_eighteen</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextEditTextEighteenBold">
+        <item name="android:textColor">@color/colorGreyLogin</item>
+        <item name="android:textColorHint">@color/colorGreyLogin</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/text_eighteen</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextAlertTitle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+</resources>
