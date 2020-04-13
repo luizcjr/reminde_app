@@ -129,6 +129,7 @@
                         android:inputType="textMultiLine"
                         android:padding="@dimen/margin_sixteen"
                         android:paddingBottom="@dimen/margin_twenty_four"
+                        android:text="@={includeRemindeViewModel.description.value}"
                         android:textColor="@color/colorGreyLogin"
                         android:textColorHint="@color/colorGreyLogin" />
                 </com.google.android.material.textfield.TextInputLayout>

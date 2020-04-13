@@ -27,6 +27,7 @@ class IncludeRemindeActivity : BaseActivity() {
 
         binding!!.includeRemindeViewModel = viewModel
         binding!!.lifecycleOwner = this
+        binding!!.includeRemindeActivity = this
 
         viewModel.loading.observe(this, loadingLiveDataObserver)
         viewModel.loadError.observe(this, errorLiveDataObserver)
@@ -35,7 +36,6 @@ class IncludeRemindeActivity : BaseActivity() {
         //Não consegui colocar a máscara pelo data binding
         binding!!.etDate.addTextChangedListener(Mask.mask(binding!!.etDate, Mask.FORMAT_DATE))
     }
-
 
     fun registerReminde() {
         viewModel.registerReminde(binding!!.etDate.text.toString())
