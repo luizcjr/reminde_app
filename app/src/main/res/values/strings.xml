@@ -45,6 +45,7 @@
     <string name="title_title">Título</string>
     <string name="title_short_description">Breve descrição</string>
     <string name="title_date">Data</string>
+    <string name="title_hour">Hora</string>
     <string name="details">Detalhes</string>
     <string name="title_author">Autor</string>
 

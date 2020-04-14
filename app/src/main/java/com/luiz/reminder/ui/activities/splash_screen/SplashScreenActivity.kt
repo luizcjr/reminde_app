@@ -13,16 +13,9 @@ import com.luiz.reminder.util.Utils
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SplashScreenViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-
-        //ViewModel
-        viewModel = ViewModelProviders.of(this)[SplashScreenViewModel::class.java]
-
-        viewModel.sendFcmToken()
 
         //Contador para que a splash abra a activity de login
         val handler = Handler()

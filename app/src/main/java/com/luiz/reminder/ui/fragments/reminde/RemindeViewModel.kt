@@ -43,7 +43,6 @@ class RemindeViewModel : BaseViewModel() {
                         loading.value = false
 
                         notes.value = t.notes
-                        Log.d("_res", "Notes view: " + Gson().toJson(t.notes))
                     }
                 })
         )

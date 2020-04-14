@@ -35,9 +35,13 @@ class IncludeRemindeActivity : BaseActivity() {
 
         //Não consegui colocar a máscara pelo data binding
         binding!!.etDate.addTextChangedListener(Mask.mask(binding!!.etDate, Mask.FORMAT_DATE))
+        binding!!.etHour.addTextChangedListener(Mask.mask(binding!!.etHour, Mask.FORMAT_HOUR))
     }
 
     fun registerReminde() {
-        viewModel.registerReminde(binding!!.etDate.text.toString())
+        viewModel.registerReminde(
+            binding!!.etDate.text.toString(),
+            binding!!.etHour.text.toString()
+        )
     }
 }

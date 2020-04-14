@@ -11,6 +11,8 @@
         <variable
             name="listener"
             type="com.luiz.reminder.ui.interfaces.NoteClickListener" />
+
+        <import type="com.luiz.reminder.util.Utils"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,7 +102,7 @@
                 android:layout_marginTop="@dimen/margin_eight"
                 android:layout_marginEnd="@dimen/margin_eight"
                 android:fontFamily="@font/montserrat"
-                android:text="@{note.date}"
+                android:text="@{Utils.convertDateBrl(note.date)}"
                 android:textColor="@color/colorGreyLogin"
                 android:textSize="@dimen/text_sixteen"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -26,7 +26,6 @@ import java.net.URL
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var pendingIntent: PendingIntent? = null
 
-
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Utils.setApiFCMToken(token)
@@ -49,26 +48,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      */
     private fun sendNotification(data: Map<String?, String?>) {
         val icon =
-            BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+            BitmapFactory.decodeResource(resources, R.drawable.ic_icon)
         Log.d("_res", "Results notification: $data")
-        try {
-            val extras = JSONObject(data)
-//            type = extras.getInt("type")
-//            id = extras.getInt("id")
-//            chatId = extras.getInt("chatId")
-//            isGuest = extras.getBoolean("isGuest")
-//            if (type == 3) {
-//                notId = extras.getInt("notId")
-//            }
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
-
 
         if (Utils.getApiToken() != null) {
             val main = Intent(this, MainActivity::class.java)
             main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            PendingIntent.getActivity(this, 0, main, PendingIntent.FLAG_ONE_SHOT)
+            pendingIntent = PendingIntent.getActivity(this, 0, main, PendingIntent.FLAG_ONE_SHOT)
         }
 
         val notificationBuilder = NotificationCompat.Builder(this, "channel_id")
@@ -79,10 +65,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentIntent(pendingIntent)
             .setContentInfo(data["title"])
             .setLargeIcon(icon)
-            .setColor(Color.RED)
-            .setLights(Color.RED, 1000, 300)
+            .setColor(Color.WHITE)
+            .setLights(Color.WHITE, 1000, 300)
             .setDefaults(Notification.DEFAULT_VIBRATE)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.ic_icon)
+
         try {
             val picture_url = data["picture_url"]
             if (picture_url != null && "" != picture_url) {
@@ -109,7 +96,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             channel.setShowBadge(true)
             channel.canShowBadge()
             channel.enableLights(true)
-            channel.lightColor = Color.RED
+            channel.lightColor = Color.WHITE
             channel.enableVibration(true)
             channel.vibrationPattern = longArrayOf(100, 200, 300, 400, 500)
             notificationManager.createNotificationChannel(channel)

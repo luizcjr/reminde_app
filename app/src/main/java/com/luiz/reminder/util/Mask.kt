@@ -13,6 +13,7 @@ object Mask {
     var maskDate = "maskDate"
 
     val FORMAT_DATE = "##/##/####"
+    val FORMAT_HOUR = "##:##"
     val FORMAT_CPF = "###.###.###-##"
     val FORMAT_CEP = "#####-###"
     val FORMAT_PHONE = "(##) #####-####"

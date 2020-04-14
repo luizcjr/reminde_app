@@ -164,6 +164,36 @@
                         android:textColorHint="@color/colorGreyLogin" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilHour"
+                    style="@style/TextEditTextDefault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_thirty_two"
+                    android:layout_marginTop="@dimen/margin_thirty_two"
+                    android:layout_marginEnd="@dimen/margin_thirty_two"
+                    app:error="@{includeRemindeViewModel.hour.error}"
+                    app:errorEnabled="true"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDate">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etHour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bcg_register_border_grey"
+                        android:drawablePadding="@dimen/margin_sixteen"
+                        android:fontFamily="@font/montserrat"
+                        android:hint="@string/title_hour"
+                        android:inputType="number"
+                        android:padding="@dimen/margin_sixteen"
+                        android:text="@={includeRemindeViewModel.hour.value}"
+                        android:textColor="@color/colorGreyLogin"
+                        android:textColorHint="@color/colorGreyLogin" />
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbIsNotified"
                     android:layout_width="wrap_content"
@@ -174,7 +204,7 @@
                     android:checked="@={includeRemindeViewModel.isNotified()}"
                     android:text="@string/title_receive_notification"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tilDate" />
+                    app:layout_constraintTop_toBottomOf="@+id/tilHour" />
 
                 <Button
                     android:id="@+id/btnRegister"

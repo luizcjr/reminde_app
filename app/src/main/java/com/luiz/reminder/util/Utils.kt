@@ -25,6 +25,8 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -198,5 +200,37 @@ object Utils {
             image,
             0
         )
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @JvmStatic
+    fun convertDateFormat(
+        date: String?,
+        initDateFormat: String?,
+        endDateFormat: String?
+    ): String? {
+        return try {
+            val initDate = SimpleDateFormat(initDateFormat).parse(date)
+            val formatter = SimpleDateFormat(endDateFormat)
+            formatter.format(initDate)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            "Erro ao obter data"
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @JvmStatic
+    fun convertDateBrl(
+        date: String?
+    ): String? {
+        return try {
+            val initDate = SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date)
+            val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm")
+            formatter.format(initDate)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            "Erro ao obter data"
+        }
     }
 }
