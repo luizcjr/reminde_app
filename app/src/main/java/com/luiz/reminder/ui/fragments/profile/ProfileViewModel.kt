@@ -29,7 +29,6 @@ class ProfileViewModel : BaseViewModel() {
     val form = ValiFiForm(email, name)
 
     private fun updateUserBody(): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("name", name.value)
@@ -39,6 +38,8 @@ class ProfileViewModel : BaseViewModel() {
     }
 
     fun updateUser() {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.updateUser(updateUserBody(), Utils.getLastUserSession()!!.id)
                 .subscribeOn(Schedulers.newThread())
@@ -46,13 +47,11 @@ class ProfileViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<UserResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: UserResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         user.value = t.user
                     }
@@ -61,7 +60,7 @@ class ProfileViewModel : BaseViewModel() {
     }
 
     fun getUserInfo() {
-        loading.value = true
+        this.beforeRequest()
 
         disposable.add(
             apiRepository.getUserInfo(Utils.getLastUserSession()!!.id)
@@ -70,16 +69,15 @@ class ProfileViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<UserResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: UserResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         user.value = t.user
-                        Log.d("_res", "User profile: " + Gson().toJson(t.user))
+                        name.value = t.user.name
+                        email.value = t.user.email
                     }
                 })
         )

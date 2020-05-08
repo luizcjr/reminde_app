@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.luiz.reminder.BR
 import com.luiz.reminder.R
 import com.luiz.reminder.api.models.Notes
 import com.luiz.reminder.databinding.GuidelinesBinding
@@ -14,22 +15,20 @@ import com.luiz.reminder.ui.base.BaseFragment
 import com.luiz.reminder.ui.view.AlertDefault
 import com.luiz.reminder.util.Utils
 
-class RemindeFragment : BaseFragment() {
+class RemindeFragment : BaseFragment<GuidelinesBinding, RemindeViewModel>() {
 
-    private lateinit var remindeViewModel: RemindeViewModel
-    private var binding: GuidelinesBinding? = null
     private val notesAdapter = NotesAdapter(arrayListOf())
 
     private val notesListDataObserver = Observer<List<Notes>> { list ->
         if (list != null && list.isNotEmpty()) {
-            binding!!.rvRemindes.apply {
+            this.viewDataBinding().rvRemindes.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = notesAdapter
             }
 
             notesAdapter.updateNotesList(list)
         } else {
-            binding!!.rvRemindes.apply {
+            this.viewDataBinding().rvRemindes.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = Utils.noResultAdapter(
                     context!!,
@@ -40,40 +39,23 @@ class RemindeFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_guidelines, container, false)
-
-        return binding!!.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        remindeViewModel =
-            ViewModelProviders.of(this).get(RemindeViewModel::class.java)
 
         setupToolbar()
         setHasOptionsMenu(true)
 
-        binding!!.guidelineViewModel = remindeViewModel
-        binding!!.lifecycleOwner = this
-
-        remindeViewModel.loading.observe(viewLifecycleOwner, loadingLiveDataObserver)
-        remindeViewModel.loadError.observe(viewLifecycleOwner, errorLiveDataObserver)
-        remindeViewModel.user.observe(viewLifecycleOwner, userLiveDataObserver)
-        remindeViewModel.notes.observe(viewLifecycleOwner, notesListDataObserver)
-        remindeViewModel.context = context!!
-        remindeViewModel.getUserInfo()
-        remindeViewModel.getAllNotes()
+        this.viewModel().loading.observe(viewLifecycleOwner, loadingLiveDataObserver)
+        this.viewModel().loadError.observe(viewLifecycleOwner, errorLiveDataObserver)
+        this.viewModel().user.observe(viewLifecycleOwner, userLiveDataObserver)
+        this.viewModel().notes.observe(viewLifecycleOwner, notesListDataObserver)
+        this.viewModel().context = context!!
+        this.viewModel().getUserInfo()
+        this.viewModel().getAllNotes()
     }
 
     private fun setupToolbar() {
-        getParentActivity()!!.setSupportActionBar(binding!!.toolbar)
+        getParentActivity()!!.setSupportActionBar(this.viewDataBinding().toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -102,9 +84,21 @@ class RemindeFragment : BaseFragment() {
         })
 
         alertDefault.addButton("Sim", R.style.ButtonDefault, View.OnClickListener {
-            remindeViewModel.logout()
+            this.viewModel().logout()
             alertDefault.dismiss()
         })
         alertDefault.show()
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.fragment_guidelines
+    }
+
+    override fun binding(): Int {
+        return BR.guidelineViewModel
+    }
+
+    override fun viewModel(): RemindeViewModel {
+        return ViewModelProviders.of(this).get(RemindeViewModel::class.java)
     }
 }

@@ -7,9 +7,6 @@
             name="includeRemindeViewModel"
             type="com.luiz.reminder.ui.activities.include_reminde.IncludeRemindeViewModel" />
 
-        <variable
-            name="includeRemindeActivity"
-            type="com.luiz.reminder.ui.activities.include_reminde.IncludeRemindeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -216,7 +213,7 @@
                     android:background="@drawable/bcg_btn_primary"
                     android:enabled="@{includeRemindeViewModel.form.valid}"
                     android:fontFamily="@font/montserrat_bold"
-                    android:onClick="@{() -> includeRemindeActivity.registerReminde()}"
+                    android:onClick="@{() -> includeRemindeViewModel.registerReminde()}"
                     android:text="@string/title_include_reminde"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_twenty"

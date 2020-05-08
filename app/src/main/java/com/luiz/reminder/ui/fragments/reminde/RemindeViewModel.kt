@@ -24,7 +24,7 @@ class RemindeViewModel : BaseViewModel() {
     val notes by lazy { MutableLiveData<List<Notes>>() }
 
     fun getAllNotes() {
-        loading.value = true
+        this.beforeRequest()
 
         disposable.add(
             apiRepository.getAllNotes()
@@ -33,14 +33,12 @@ class RemindeViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<NotesResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                         notes.value = null
                     }
 
                     override fun onSuccess(t: NotesResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         notes.value = t.notes
                     }
@@ -49,7 +47,7 @@ class RemindeViewModel : BaseViewModel() {
     }
 
     fun getUserInfo() {
-        loading.value = true
+        this.beforeRequest()
 
         disposable.add(
             apiRepository.getUserInfo(Utils.getLastUserSession()!!.id)
@@ -58,14 +56,12 @@ class RemindeViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<UserResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                         user.value = null
                     }
 
                     override fun onSuccess(t: UserResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         user.value = t.user
                     }

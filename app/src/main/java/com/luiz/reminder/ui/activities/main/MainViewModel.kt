@@ -21,7 +21,6 @@ import okhttp3.RequestBody
 class MainViewModel : BaseViewModel() {
 
     private fun fcmTokenBody(fcmToken: String): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("fcm_token", fcmToken)
@@ -63,6 +62,8 @@ class MainViewModel : BaseViewModel() {
     }
 
     private fun sendFcmToken(body: RequestBody) {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.sendFCMToken(body)
                 .subscribeOn(Schedulers.newThread())
@@ -70,13 +71,11 @@ class MainViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<FCMResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: FCMResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
                     }
                 })
         )

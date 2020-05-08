@@ -27,7 +27,6 @@ class RegisterViewModel : BaseViewModel() {
     val form = ValiFiForm(email, name, password)
 
     private fun registerUser(): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("name", name.value)
@@ -38,6 +37,8 @@ class RegisterViewModel : BaseViewModel() {
     }
 
     fun sendRegisterUser() {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.register(registerUser())
                 .subscribeOn(Schedulers.newThread())
@@ -45,13 +46,11 @@ class RegisterViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<RegisterResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: RegisterResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         Utils.setApiToken(t.token)
                         Utils.setLastUserSession(t.user)

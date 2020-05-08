@@ -26,13 +26,16 @@ class IncludeRemindeViewModel : BaseViewModel() {
     val description = ValiFieldText().addNotEmptyValidator("Campo obrigatório!")
     val isNotified = MutableLiveData<Boolean>()
 
-    val form = ValiFiForm(title, description)
+    val form = ValiFiForm(title, description, date, hour)
 
-    private fun reminderBody(date: String, hora: String): RequestBody {
-        loading.value = true
+    private fun reminderBody(): RequestBody {
 
         val dateFinal =
-            Utils.convertDateFormat("$date $hora", "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm")
+            Utils.convertDateFormat(
+                "${date.value} ${hour.value}",
+                "dd/MM/yyyy HH:mm",
+                "yyyy-MM-dd HH:mm"
+            )
 
         val json = JsonObject()
         json.addProperty("title", title.value)
@@ -43,34 +46,26 @@ class IncludeRemindeViewModel : BaseViewModel() {
         return RequestBody.create(MediaType.parse("application/json"), json.toString())
     }
 
-    fun registerReminde(data: String, hora: String) {
-        if (data.isNotEmpty() && data.length == 10) {
-            if (hora.isNotEmpty() && hora.length == 5) {
-                disposable.add(
-                    apiRepository.registerNote(reminderBody(data, hora))
-                        .subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(object : DisposableSingleObserver<NoteResponse>() {
-                            override fun onError(e: Throwable) {
-                                e.printStackTrace()
-                                loadError.value = Utils.getMessageErrorObject(e)
-                                loading.value = false
-                            }
+    fun registerReminde() {
+        this.beforeRequest()
 
-                            override fun onSuccess(t: NoteResponse) {
-                                loadError.value = null
-                                loading.value = false
+        disposable.add(
+            apiRepository.registerNote(reminderBody())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<NoteResponse>() {
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                        afterRequest(e)
+                    }
 
-                                redirectToHome()
-                            }
-                        })
-                )
-            } else {
-                hour.value = hora
-            }
-        } else {
-            date.value = data
-        }
+                    override fun onSuccess(t: NoteResponse) {
+                        afterRequest()
+
+                        redirectToHome()
+                    }
+                })
+        )
     }
 
     private fun redirectToHome() {

@@ -33,7 +33,6 @@ class ForgotPasswordViewModel : BaseViewModel() {
         tokenReset: String,
         passwordReset: String
     ): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("email", emailReset)
@@ -48,6 +47,8 @@ class ForgotPasswordViewModel : BaseViewModel() {
         tokenReset: String,
         passwordReset: String
     ) {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.resetPassword(resetPassword(emailReset, tokenReset, passwordReset))
                 .subscribeOn(Schedulers.newThread())
@@ -55,13 +56,11 @@ class ForgotPasswordViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<LoginResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: LoginResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
                         redirectToLogin()
                     }
                 })
@@ -69,7 +68,6 @@ class ForgotPasswordViewModel : BaseViewModel() {
     }
 
     private fun forgotPassword(): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("email", email.value)
@@ -78,6 +76,8 @@ class ForgotPasswordViewModel : BaseViewModel() {
     }
 
     fun sendToken() {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.sendToken(forgotPassword())
                 .subscribeOn(Schedulers.newThread())
@@ -85,14 +85,11 @@ class ForgotPasswordViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<LoginResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: LoginResponse) {
-                        loadError.value = null
-                        loading.value = false
-                        Log.d("_res", "Sucesso")
+                        afterRequest()
 
                         dialogResetToken()
                     }

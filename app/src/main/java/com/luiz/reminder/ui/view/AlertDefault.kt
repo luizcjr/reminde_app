@@ -91,11 +91,13 @@ class AlertDefault(
             0
         )
         button.text = title
-        button.layoutParams = LinearLayout.LayoutParams(
+        val layoutParams = LinearLayout.LayoutParams(
             0,
             LinearLayout.LayoutParams.WRAP_CONTENT,
             1f
         )
+        layoutParams.marginStart = 20
+        button.layoutParams = layoutParams
         button.minWidth = 0
         if (clickListener != null) {
             button.setOnClickListener(clickListener)

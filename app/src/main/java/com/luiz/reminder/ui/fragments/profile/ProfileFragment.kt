@@ -5,57 +5,30 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.luiz.reminder.BR
 import com.luiz.reminder.R
 import com.luiz.reminder.api.models.User
 import com.luiz.reminder.databinding.ProfileBinding
 import com.luiz.reminder.ui.base.BaseFragment
 import com.luiz.reminder.ui.view.AlertDefault
 
-class ProfileFragment : BaseFragment() {
-
-    private lateinit var profileViewModel: ProfileViewModel
-    private var binding: ProfileBinding? = null
-
-    private val userDataObserver = Observer<User> { user ->
-        user.let {
-            profileViewModel.email.value = user.email
-            profileViewModel.name.value = user.name
-            getParentActivity()!!.title = user.name
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-
-        return binding!!.root
-    }
+class ProfileFragment : BaseFragment<ProfileBinding, ProfileViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel =
-            ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-
         setupToolbar()
         setHasOptionsMenu(true)
 
-        binding!!.profilleViewModel = profileViewModel
-        binding!!.lifecycleOwner = this
-
-        profileViewModel.loading.observe(viewLifecycleOwner, loadingLiveDataObserver)
-        profileViewModel.loadError.observe(viewLifecycleOwner, errorLiveDataObserver)
-        profileViewModel.user.observe(viewLifecycleOwner, userDataObserver)
-        profileViewModel.context = context!!
-        profileViewModel.getUserInfo()
+        this.viewModel().loading.observe(viewLifecycleOwner, loadingLiveDataObserver)
+        this.viewModel().loadError.observe(viewLifecycleOwner, errorLiveDataObserver)
+        this.viewModel().user.observe(viewLifecycleOwner, userLiveDataObserver)
+        this.viewModel().context = context!!
+        this.viewModel().getUserInfo()
     }
 
     private fun setupToolbar() {
-        getParentActivity()!!.setSupportActionBar(binding!!.toolbar)
+        getParentActivity()!!.setSupportActionBar(this.viewDataBinding().toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -84,9 +57,21 @@ class ProfileFragment : BaseFragment() {
         })
 
         alertDefault.addButton("Sim", R.style.ButtonDefault, View.OnClickListener {
-            profileViewModel.logout()
+            this.viewModel().logout()
             alertDefault.dismiss()
         })
         alertDefault.show()
+    }
+
+    override fun layoutId(): Int {
+        return R.layout.fragment_profile
+    }
+
+    override fun binding(): Int {
+        return BR.profilleViewModel
+    }
+
+    override fun viewModel(): ProfileViewModel {
+        return ViewModelProviders.of(this).get(ProfileViewModel::class.java)
     }
 }

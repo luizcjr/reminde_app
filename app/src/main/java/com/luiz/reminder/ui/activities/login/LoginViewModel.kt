@@ -27,7 +27,6 @@ class LoginViewModel : BaseViewModel() {
     val form = ValiFiForm(email, password)
 
     private fun login(): RequestBody {
-        loading.value = true
 
         val json = JsonObject()
         json.addProperty("email", email.value)
@@ -37,6 +36,8 @@ class LoginViewModel : BaseViewModel() {
     }
 
     fun sendLogin() {
+        this.beforeRequest()
+
         disposable.add(
             apiRepository.login(login())
                 .subscribeOn(Schedulers.newThread())
@@ -44,13 +45,11 @@ class LoginViewModel : BaseViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<LoginResponse>() {
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        loadError.value = Utils.getMessageErrorObject(e)
-                        loading.value = false
+                        afterRequest(e)
                     }
 
                     override fun onSuccess(t: LoginResponse) {
-                        loadError.value = null
-                        loading.value = false
+                        afterRequest()
 
                         Utils.setApiToken(t.token)
                         Utils.setLastUserSession(t.user)
